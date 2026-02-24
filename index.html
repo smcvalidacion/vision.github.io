@@ -4,73 +4,74 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Presupuesto CCTV — Segurity Vision</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:      #000d1f;
-  --navy:    #1A2E5A;
-  --blue:    #0050C8;
-  --accent:  #2979FF;
-  --sky:     #4A90D9;
-  --ice:     #D6E8FF;
-  --white:   #F0F6FF;
-  --silver:  #8AAFD4;
-  --border:  rgba(74,144,217,0.2);
-  --card:    rgba(26,46,90,0.45);
-  --green:   #00C896;
-  --red:     #FF3B5C;
-  --yellow:  #FFB800;
-  --orange:  #FF6B00;
-  --glow:    0 0 30px rgba(0,80,200,0.25);
+  --bg:      #f4f6f9;
+  --white:   #ffffff;
+  --border:  #d0d7e3;
+  --card:    #ffffff;
+  --navy:    #1e3a5f;
+  --blue:    #2563eb;
+  --accent:  #3b82f6;
+  --sky:     #1d4ed8;
+  --silver:  #64748b;
+  --text:    #1e293b;
+  --text2:   #475569;
+  --green:   #16a34a;
+  --red:     #dc2626;
+  --yellow:  #d97706;
+  --orange:  #ea580c;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body {
-  font-family:'DM Sans',sans-serif;
-  background:
-    radial-gradient(ellipse at 20% 80%,rgba(0,80,200,0.25) 0%,transparent 55%),
-    radial-gradient(ellipse at 80% 20%,rgba(0,40,120,0.3) 0%,transparent 50%),
-    linear-gradient(145deg,#000305 0%,#020a18 40%,#030d20 70%,#010208 100%);
-  min-height:100vh; color:var(--white); padding:28px 20px;
+  font-family:'Inter',sans-serif;
+  background: var(--bg);
+  min-height:100vh;
+  color: var(--text);
+  padding:28px 20px;
 }
 
 /* ── HEADER ── */
 .header {
   max-width:960px; margin:0 auto 28px;
   display:flex; align-items:center; justify-content:space-between;
-  background:rgba(10,20,50,0.7); border:1px solid var(--border);
-  border-radius:18px; padding:20px 28px;
-  backdrop-filter:blur(20px);
-  border-top:2px solid var(--accent);
+  background: var(--white);
+  border:1px solid var(--border);
+  border-radius:14px; padding:18px 26px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border-top: 3px solid var(--accent);
 }
 .logo-wrap { display:flex; align-items:center; gap:14px; }
 .logo-icon {
-  width:46px;height:46px;border-radius:12px;
-  background:linear-gradient(135deg,var(--blue),var(--accent));
+  width:46px;height:46px;border-radius:10px;
+  background: var(--accent);
   display:flex;align-items:center;justify-content:center;
-  font-size:22px; box-shadow:0 4px 16px rgba(0,80,200,0.4);
+  font-size:22px;
 }
-.logo-title { font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--white); }
-.logo-sub   { font-size:10px;color:var(--sky);letter-spacing:2px;text-transform:uppercase;margin-top:2px; }
+.logo-title { font-weight:800;font-size:17px;color:var(--navy); letter-spacing:-0.3px;}
+.logo-sub   { font-size:11px;color:var(--silver);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px; }
 
 /* ── DOLAR BOX ── */
 .dolar-box {
   display:flex;align-items:center;gap:12px;
-  background:rgba(0,13,31,0.6); border:1px solid var(--border);
-  border-radius:14px; padding:10px 18px;
+  background: #fffbeb;
+  border:1px solid #fde68a;
+  border-radius:12px; padding:10px 18px;
 }
-.dolar-label { font-size:11px;color:var(--silver);text-transform:uppercase;letter-spacing:1px; }
+.dolar-label { font-size:11px;color:var(--yellow);text-transform:uppercase;letter-spacing:1px;font-weight:600; }
 .dolar-input-wrap { display:flex;align-items:center;gap:6px; }
-.dolar-sign { font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--yellow); }
+.dolar-sign { font-weight:800;font-size:18px;color:var(--yellow); }
 .dolar-input {
   background:transparent; border:none; outline:none;
-  font-family:'Syne',sans-serif;font-weight:700;font-size:22px;
+  font-weight:700;font-size:22px;
   color:var(--yellow); width:90px; text-align:center;
 }
-.dolar-input::placeholder{color:rgba(255,184,0,0.3);}
+.dolar-input::placeholder{color:rgba(217,119,6,0.35);}
 .dolar-badge {
-  font-size:10px;color:var(--yellow);background:rgba(255,184,0,0.12);
-  border:1px solid rgba(255,184,0,0.25);border-radius:6px;padding:3px 8px;
+  font-size:10px;color:var(--yellow);background:rgba(253,230,138,0.5);
+  border:1px solid #fde68a;border-radius:6px;padding:3px 8px;font-weight:600;
 }
 
 /* ── LAYOUT ── */
@@ -78,77 +79,87 @@ body {
 
 /* ── PANEL ── */
 .panel {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:18px; backdrop-filter:blur(12px); overflow:hidden;
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  overflow:hidden;
 }
 .panel-header {
-  padding:16px 22px; border-bottom:1px solid var(--border);
+  padding:14px 20px; border-bottom:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;
+  background: #f8fafc;
 }
-.panel-title { font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--white); }
+.panel-title { font-weight:700;font-size:14px;color:var(--navy); }
 .panel-body  { padding:20px; }
 
 /* ── AGREGAR PRODUCTO ── */
 .add-grid { display:grid; grid-template-columns:1fr 80px auto; gap:10px; align-items:end; }
-.form-label { font-size:10px;color:var(--silver);letter-spacing:1.5px;text-transform:uppercase;
-  margin-bottom:6px;display:block;font-weight:600; }
+.form-label { font-size:11px;color:var(--silver);letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:5px;display:block;font-weight:600; }
 .form-select, .form-input {
-  width:100%;padding:10px 14px;
-  background:rgba(0,13,31,0.6);border:1px solid var(--border);
-  border-radius:10px;color:var(--white);font-family:'DM Sans',sans-serif;
+  width:100%;padding:9px 12px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:8px;color:var(--text);
+  font-family:'Inter',sans-serif;
   font-size:13px;transition:all 0.2s;outline:none;
 }
-.form-select:focus,.form-input:focus{ border-color:var(--accent);box-shadow:0 0 0 3px rgba(41,121,255,0.15); }
-.form-select option{background:#021228;}
+.form-select:focus,.form-input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(59,130,246,0.12);
+}
+.form-select option{background:#fff;color:var(--text);}
 
 .btn {
-  padding:10px 18px;border-radius:10px;font-family:'DM Sans',sans-serif;
+  padding:9px 16px;border-radius:8px;font-family:'Inter',sans-serif;
   font-size:13px;font-weight:600;cursor:pointer;border:none;
   transition:all 0.2s;display:inline-flex;align-items:center;gap:6px;
 }
 .btn-primary {
-  background:linear-gradient(135deg,var(--blue),var(--accent));
-  color:white;box-shadow:0 4px 14px rgba(0,80,200,0.4);
+  background: var(--accent);
+  color:white;
+  box-shadow:0 2px 8px rgba(59,130,246,0.3);
   white-space:nowrap;
 }
-.btn-primary:hover{ transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,80,200,0.5); }
+.btn-primary:hover{ background: var(--sky); box-shadow:0 4px 12px rgba(59,130,246,0.4); }
 .btn-ghost {
-  background:rgba(26,46,90,0.5);color:var(--silver);
+  background:#f1f5f9;color:var(--silver);
   border:1px solid var(--border); padding:7px 13px;font-size:12px;
 }
-.btn-ghost:hover{color:var(--white);border-color:rgba(41,121,255,0.4);}
+.btn-ghost:hover{color:var(--text);border-color:#cbd5e1;background:#e2e8f0;}
 .btn-danger {
-  background:rgba(255,59,92,0.1);color:var(--red);
-  border:1px solid rgba(255,59,92,0.25);padding:6px 10px;font-size:13px;
+  background:#fff1f2;color:var(--red);
+  border:1px solid #fecaca;padding:6px 10px;font-size:13px;
 }
-.btn-danger:hover{background:rgba(255,59,92,0.25);}
+.btn-danger:hover{background:#fee2e2;}
 
 /* ── PRODUCTOS MARCADOS CON USD ── */
 .usd-tag {
-  display:inline-block;font-size:9px;background:rgba(255,184,0,0.15);
-  color:var(--yellow);border:1px solid rgba(255,184,0,0.3);
-  border-radius:4px;padding:1px 5px;margin-left:4px;vertical-align:middle;
+  display:inline-block;font-size:9px;background:rgba(253,230,138,0.5);
+  color:var(--yellow);border:1px solid #fde68a;
+  border-radius:4px;padding:1px 5px;margin-left:4px;vertical-align:middle;font-weight:700;
 }
 
 /* ── TABLA ── */
 .items-table { width:100%;border-collapse:collapse;margin-top:4px; }
 .items-table th {
-  font-size:9px;color:var(--silver);letter-spacing:1.5px;text-transform:uppercase;
+  font-size:10px;color:var(--silver);letter-spacing:1.5px;text-transform:uppercase;
   text-align:left;padding:0 10px 10px;font-weight:600;
 }
 .items-table td {
-  padding:10px;font-size:13px;border-top:1px solid rgba(74,144,217,0.08);
+  padding:10px;font-size:13px;border-top:1px solid #f1f5f9;
 }
-.items-table tr:hover td{background:rgba(0,80,200,0.06);}
+.items-table tr:hover td{background:#f8fafc;}
 
-.prod-name  { color:var(--white);font-weight:500; }
-.prod-price { color:var(--sky);font-family:'Syne',sans-serif;font-weight:700;font-size:13px; }
-.subtotal   { color:var(--white);font-family:'Syne',sans-serif;font-weight:700; }
+.prod-name  { color:var(--text);font-weight:500; }
+.prod-price { color:var(--blue);font-weight:700;font-size:13px; }
+.subtotal   { color:var(--navy);font-weight:700; }
 
 .qty-input {
-  width:52px;padding:5px;background:rgba(0,13,31,0.6);
+  width:52px;padding:5px;background:#fff;
   border:1px solid var(--border);border-radius:7px;
-  color:var(--white);text-align:center;font-size:13px;font-weight:600;outline:none;
+  color:var(--text);text-align:center;font-size:13px;font-weight:600;outline:none;
 }
 .qty-input:focus{border-color:var(--accent);}
 
@@ -160,39 +171,38 @@ body {
 .empty p{font-size:13px;}
 
 /* ── RIGHT PANEL ── */
-/* Resumen */
 .summary-row {
   display:flex;justify-content:space-between;align-items:center;
-  padding:10px 0;border-bottom:1px solid rgba(74,144,217,0.08);
+  padding:10px 0;border-bottom:1px solid #f1f5f9;
   font-size:13px;
 }
 .summary-row:last-child{border-bottom:none;}
 .s-label{color:var(--silver);}
-.s-val  {color:var(--white);font-weight:600;}
+.s-val  {color:var(--text);font-weight:600;}
 
 .total-box {
-  background:linear-gradient(135deg,rgba(0,80,200,0.3),rgba(41,121,255,0.15));
-  border:1px solid rgba(41,121,255,0.35);
-  border-radius:14px;padding:16px 20px;
+  background:#eff6ff;
+  border:1px solid #bfdbfe;
+  border-radius:12px;padding:16px 20px;
   display:flex;justify-content:space-between;align-items:center;
   margin:14px 0;
 }
-.total-label{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;}
-.total-val  {font-family:'Syne',sans-serif;font-weight:800;font-size:24px;color:var(--accent);}
+.total-label{font-weight:700;font-size:13px;color:var(--navy);}
+.total-val  {font-weight:800;font-size:24px;color:var(--accent);}
 
 /* Ganancia */
 .ganancia-input-wrap{display:flex;gap:8px;margin-bottom:12px;}
 .ganancia-result{
-  border-radius:12px;padding:14px;
+  border-radius:10px;padding:14px;
   border-left:3px solid var(--green);
-  background:rgba(0,200,150,0.07);
+  background:#f0fdf4;
 }
-.ganancia-result.perdida{border-left-color:var(--red);background:rgba(255,59,92,0.07);}
+.ganancia-result.perdida{border-left-color:var(--red);background:#fff1f2;}
 .g-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;
-  border-bottom:1px solid rgba(255,255,255,0.05);}
+  border-bottom:1px solid rgba(0,0,0,0.06);}
 .g-row:last-child{border-bottom:none;font-size:15px;font-weight:700;padding-top:8px;}
 .g-label{color:var(--silver);}
-.g-val  {font-weight:600;color:var(--white);}
+.g-val  {font-weight:600;color:var(--text);}
 .g-val.pos{color:var(--green);}
 .g-val.neg{color:var(--red);}
 
@@ -200,28 +210,26 @@ body {
   display:inline-block;font-size:10px;font-weight:700;
   padding:2px 8px;border-radius:10px;margin-left:6px;
 }
-.pct-badge.pos{background:rgba(0,200,150,0.2);color:var(--green);}
-.pct-badge.neg{background:rgba(255,59,92,0.2);color:var(--red);}
+.pct-badge.pos{background:#dcfce7;color:var(--green);}
+.pct-badge.neg{background:#fee2e2;color:var(--red);}
 
 /* ── DOLAR INFO ── */
 .dolar-info {
-  background:rgba(255,184,0,0.08);border:1px solid rgba(255,184,0,0.2);
-  border-radius:10px;padding:10px 14px;margin-bottom:14px;
+  background:#fffbeb;border:1px solid #fde68a;
+  border-radius:8px;padding:10px 14px;margin-bottom:14px;
   font-size:12px;color:var(--yellow);display:flex;align-items:center;gap:8px;
 }
 
-/* Separador divisor */
 .divider{
   height:1px;background:var(--border);margin:16px 0;
 }
 
-/* ── LIMPIAR ── */
 .clear-btn-wrap{display:flex;justify-content:flex-end;margin-top:14px;}
 
 /* scrollbar */
-::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar{width:6px;}
 ::-webkit-scrollbar-track{background:transparent;}
-::-webkit-scrollbar-thumb{background:rgba(74,144,217,0.3);border-radius:3px;}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px;}
 </style>
 </head>
 <body>
@@ -364,21 +372,18 @@ body {
 </div>
 
 <script>
-// ──────────────────────────────────────────────────
-// CATÁLOGO DE PRODUCTOS
-// usd: true  → precio base en USD, se multiplica por dólar
-// usd: false → precio fijo en CLP
-// ──────────────────────────────────────────────────
 const CATALOGO = [
-  // ── Precio en USD reales → se multiplica por el dólar ingresado
-  // precioBase = valor en dólares (ej: 11 = USD 11)
   { nombre:'Cámara Full HD INTCOMEX',          precioBase: 11,    usd: true, iva: true  },
   { nombre:'Cámara con Audio INTCOMEX',        precioBase: 15.60, usd: true, iva: true  },
   { nombre:'Balum INTCOMEX',                   precioBase:  2,    usd: true, iva: true  },
   { nombre:'DVR 4 Canales INTCOMEX',           precioBase: 25.70, usd: true, iva: true  },
   { nombre:'DVR 8 Canales INTCOMEX',           precioBase: 31.30, usd: true, iva: true  },
-
-  // ── Precios fijos CLP (no cambian con el dólar)
+  { nombre:'Switch PoE 4+2 INTCOMEX',         precioBase: 14.70, usd: true, iva: true  },
+  { nombre:'Switch PoE 8+2 INTCOMEX',         precioBase: 23.80, usd: true, iva: true  },
+  { nombre:'Cámara IP 2MP INTCOMEX',           precioBase: 12.50, usd: true, iva: true  },
+  { nombre:'Cámara IP 4MP INTCOMEX',           precioBase: 18.00, usd: true, iva: true  },
+  { nombre:'NVR 4 Canales INTCOMEX',           precioBase: 32.00, usd: true, iva: true  },
+  { nombre:'NVR 8 Canales INTCOMEX',           precioBase: 45.00, usd: true, iva: true  },
   { nombre:'DVR 4 Canales',                    precioBase: 28000, usd: false },
   { nombre:'DVR 8 Canales',                    precioBase: 35000, usd: false },
   { nombre:'Disco Duro 500GB',                 precioBase:  5000, usd: false },
@@ -395,10 +400,9 @@ const CATALOGO = [
   { nombre:'Caja Estanca San Francisco',       precioBase:  1500, usd: false },
 ];
 
-let carrito  = [];      // [{idx, nombre, precioBase, usd, precioActual, qty}]
+let carrito  = [];
 let dolarCLP = 0;
 
-// ── INIT ──────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   buildSelect();
 });
@@ -419,20 +423,18 @@ function buildSelect() {
   });
 }
 
-// ── DOLAR ─────────────────────────────────────────
 function onDolarChange(val) {
   dolarCLP = parseFloat(val) || 0;
   const badge = document.getElementById('dolar-status');
   if (dolarCLP > 0) {
     badge.textContent = `USD × ${fmtCLP(dolarCLP)}`;
-    badge.style.background = 'rgba(255,184,0,0.2)';
+    badge.style.background = 'rgba(253,230,138,0.5)';
     badge.style.color = 'var(--yellow)';
   } else {
     badge.textContent = 'Sin ingresar';
     badge.style.background = '';
     badge.style.color = '';
   }
-  // Recalcular precios de todo el carrito
   carrito.forEach(item => {
     item.precioActual = getPrecio(CATALOGO[item.idx]);
   });
@@ -452,7 +454,6 @@ function getPrecio(prod) {
   return Math.round(precio);
 }
 
-// ── CARRITO ───────────────────────────────────────
 function agregarProducto() {
   const sel = document.getElementById('prod-select');
   const idx = parseInt(sel.value);
@@ -460,7 +461,6 @@ function agregarProducto() {
   if (isNaN(idx) || sel.value === '') { showToast('⚠ Selecciona un producto'); return; }
 
   const prod = CATALOGO[idx];
-  // Si ya existe, sumar cantidad
   const existe = carrito.find(c => c.idx === idx);
   if (existe) {
     existe.qty += qty;
@@ -490,7 +490,6 @@ function updateQty(idx, val) {
   if (item) item.qty = qty;
   renderResumen();
   calcGanancia();
-  // actualizar subtotal en celda
   const cell = document.getElementById('sub-' + idx);
   if (cell) cell.textContent = fmtCLP(item.precioActual * qty);
 }
@@ -504,7 +503,6 @@ function limpiarTodo() {
   calcGanancia();
 }
 
-// ── RENDER TABLA ──────────────────────────────────
 function renderTabla() {
   const tbody  = document.getElementById('items-tbody');
   const table  = document.getElementById('items-table');
@@ -524,7 +522,7 @@ function renderTabla() {
       <td style="padding-left:20px">
         <span class="prod-name">${item.nombre}</span>
         ${item.usd ? '<span class="usd-tag">USD</span>' : ''}
-        ${item.iva ? '<span class="usd-tag" style="background:rgba(0,200,150,0.12);color:var(--green);border-color:rgba(0,200,150,0.3)">+IVA</span>' : ''}
+        ${item.iva ? '<span class="usd-tag" style="background:#dcfce7;color:#16a34a;border-color:#bbf7d0">+IVA</span>' : ''}
       </td>
       <td><span class="prod-price">${fmtCLP(item.precioActual)}</span></td>
       <td>
@@ -539,7 +537,6 @@ function renderTabla() {
     </tr>`).join('');
 }
 
-// ── RESUMEN ───────────────────────────────────────
 function renderResumen() {
   const total    = carrito.reduce((s, c) => s + c.precioActual * c.qty, 0);
   const units    = carrito.reduce((s, c) => s + c.qty, 0);
@@ -551,7 +548,6 @@ function renderResumen() {
   document.getElementById('s-total').textContent = fmtCLP(total);
 }
 
-// ── GANANCIA ──────────────────────────────────────
 function calcGanancia() {
   const pv    = parseFloat(document.getElementById('precio-venta').value) || 0;
   const costo = carrito.reduce((s, c) => s + c.precioActual * c.qty, 0);
@@ -583,13 +579,11 @@ function calcGanancia() {
     </div>`;
 }
 
-// ── HELPERS ───────────────────────────────────────
 function fmtCLP(n) {
   return '$' + Math.round(n).toLocaleString('es-CL');
 }
 
 function showToast(msg) {
-  // simple alert fallback
   alert(msg);
 }
 </script>
