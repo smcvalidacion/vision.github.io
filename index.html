@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presupuesto CCTV — Segurity Vision</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #000d1f;
+  --navy:    #1A2E5A;
+  --blue:    #0050C8;
+  --accent:  #2979FF;
+  --sky:     #4A90D9;
+  --ice:     #D6E8FF;
+  --white:   #F0F6FF;
+  --silver:  #8AAFD4;
+  --border:  rgba(74,144,217,0.2);
+  --card:    rgba(26,46,90,0.45);
+  --green:   #00C896;
+  --red:     #FF3B5C;
+  --yellow:  #FFB800;
+  --orange:  #FF6B00;
+  --glow:    0 0 30px rgba(0,80,200,0.25);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body {
+  font-family:'DM Sans',sans-serif;
+  background:
+    radial-gradient(ellipse at 20% 80%,rgba(0,80,200,0.25) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 20%,rgba(0,40,120,0.3) 0%,transparent 50%),
+    linear-gradient(145deg,#000305 0%,#020a18 40%,#030d20 70%,#010208 100%);
+  min-height:100vh; color:var(--white); padding:28px 20px;
+}
+
+/* ── HEADER ── */
+.header {
+  max-width:960px; margin:0 auto 28px;
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(10,20,50,0.7); border:1px solid var(--border);
+  border-radius:18px; padding:20px 28px;
+  backdrop-filter:blur(20px);
+  border-top:2px solid var(--accent);
+}
+.logo-wrap { display:flex; align-items:center; gap:14px; }
+.logo-icon {
+  width:46px;height:46px;border-radius:12px;
+  background:linear-gradient(135deg,var(--blue),var(--accent));
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px; box-shadow:0 4px 16px rgba(0,80,200,0.4);
+}
+.logo-title { font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--white); }
+.logo-sub   { font-size:10px;color:var(--sky);letter-spacing:2px;text-transform:uppercase;margin-top:2px; }
+
+/* ── DOLAR BOX ── */
+.dolar-box {
+  display:flex;align-items:center;gap:12px;
+  background:rgba(0,13,31,0.6); border:1px solid var(--border);
+  border-radius:14px; padding:10px 18px;
+}
+.dolar-label { font-size:11px;color:var(--silver);text-transform:uppercase;letter-spacing:1px; }
+.dolar-input-wrap { display:flex;align-items:center;gap:6px; }
+.dolar-sign { font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--yellow); }
+.dolar-input {
+  background:transparent; border:none; outline:none;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:22px;
+  color:var(--yellow); width:90px; text-align:center;
+}
+.dolar-input::placeholder{color:rgba(255,184,0,0.3);}
+.dolar-badge {
+  font-size:10px;color:var(--yellow);background:rgba(255,184,0,0.12);
+  border:1px solid rgba(255,184,0,0.25);border-radius:6px;padding:3px 8px;
+}
+
+/* ── LAYOUT ── */
+.wrap { max-width:960px; margin:0 auto; display:grid; grid-template-columns:1fr 380px; gap:20px; }
+
+/* ── PANEL ── */
+.panel {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:18px; backdrop-filter:blur(12px); overflow:hidden;
+}
+.panel-header {
+  padding:16px 22px; border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.panel-title { font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--white); }
+.panel-body  { padding:20px; }
+
+/* ── AGREGAR PRODUCTO ── */
+.add-grid { display:grid; grid-template-columns:1fr 80px auto; gap:10px; align-items:end; }
+.form-label { font-size:10px;color:var(--silver);letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:6px;display:block;font-weight:600; }
+.form-select, .form-input {
+  width:100%;padding:10px 14px;
+  background:rgba(0,13,31,0.6);border:1px solid var(--border);
+  border-radius:10px;color:var(--white);font-family:'DM Sans',sans-serif;
+  font-size:13px;transition:all 0.2s;outline:none;
+}
+.form-select:focus,.form-input:focus{ border-color:var(--accent);box-shadow:0 0 0 3px rgba(41,121,255,0.15); }
+.form-select option{background:#021228;}
+
+.btn {
+  padding:10px 18px;border-radius:10px;font-family:'DM Sans',sans-serif;
+  font-size:13px;font-weight:600;cursor:pointer;border:none;
+  transition:all 0.2s;display:inline-flex;align-items:center;gap:6px;
+}
+.btn-primary {
+  background:linear-gradient(135deg,var(--blue),var(--accent));
+  color:white;box-shadow:0 4px 14px rgba(0,80,200,0.4);
+  white-space:nowrap;
+}
+.btn-primary:hover{ transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,80,200,0.5); }
+.btn-ghost {
+  background:rgba(26,46,90,0.5);color:var(--silver);
+  border:1px solid var(--border); padding:7px 13px;font-size:12px;
+}
+.btn-ghost:hover{color:var(--white);border-color:rgba(41,121,255,0.4);}
+.btn-danger {
+  background:rgba(255,59,92,0.1);color:var(--red);
+  border:1px solid rgba(255,59,92,0.25);padding:6px 10px;font-size:13px;
+}
+.btn-danger:hover{background:rgba(255,59,92,0.25);}
+
+/* ── PRODUCTOS MARCADOS CON USD ── */
+.usd-tag {
+  display:inline-block;font-size:9px;background:rgba(255,184,0,0.15);
+  color:var(--yellow);border:1px solid rgba(255,184,0,0.3);
+  border-radius:4px;padding:1px 5px;margin-left:4px;vertical-align:middle;
+}
+
+/* ── TABLA ── */
+.items-table { width:100%;border-collapse:collapse;margin-top:4px; }
+.items-table th {
+  font-size:9px;color:var(--silver);letter-spacing:1.5px;text-transform:uppercase;
+  text-align:left;padding:0 10px 10px;font-weight:600;
+}
+.items-table td {
+  padding:10px;font-size:13px;border-top:1px solid rgba(74,144,217,0.08);
+}
+.items-table tr:hover td{background:rgba(0,80,200,0.06);}
+
+.prod-name  { color:var(--white);font-weight:500; }
+.prod-price { color:var(--sky);font-family:'Syne',sans-serif;font-weight:700;font-size:13px; }
+.subtotal   { color:var(--white);font-family:'Syne',sans-serif;font-weight:700; }
+
+.qty-input {
+  width:52px;padding:5px;background:rgba(0,13,31,0.6);
+  border:1px solid var(--border);border-radius:7px;
+  color:var(--white);text-align:center;font-size:13px;font-weight:600;outline:none;
+}
+.qty-input:focus{border-color:var(--accent);}
+
+/* ── EMPTY ── */
+.empty {
+  text-align:center;padding:40px 20px;color:var(--silver);
+}
+.empty .icon{font-size:36px;margin-bottom:10px;}
+.empty p{font-size:13px;}
+
+/* ── RIGHT PANEL ── */
+/* Resumen */
+.summary-row {
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0;border-bottom:1px solid rgba(74,144,217,0.08);
+  font-size:13px;
+}
+.summary-row:last-child{border-bottom:none;}
+.s-label{color:var(--silver);}
+.s-val  {color:var(--white);font-weight:600;}
+
+.total-box {
+  background:linear-gradient(135deg,rgba(0,80,200,0.3),rgba(41,121,255,0.15));
+  border:1px solid rgba(41,121,255,0.35);
+  border-radius:14px;padding:16px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+  margin:14px 0;
+}
+.total-label{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;}
+.total-val  {font-family:'Syne',sans-serif;font-weight:800;font-size:24px;color:var(--accent);}
+
+/* Ganancia */
+.ganancia-input-wrap{display:flex;gap:8px;margin-bottom:12px;}
+.ganancia-result{
+  border-radius:12px;padding:14px;
+  border-left:3px solid var(--green);
+  background:rgba(0,200,150,0.07);
+}
+.ganancia-result.perdida{border-left-color:var(--red);background:rgba(255,59,92,0.07);}
+.g-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;
+  border-bottom:1px solid rgba(255,255,255,0.05);}
+.g-row:last-child{border-bottom:none;font-size:15px;font-weight:700;padding-top:8px;}
+.g-label{color:var(--silver);}
+.g-val  {font-weight:600;color:var(--white);}
+.g-val.pos{color:var(--green);}
+.g-val.neg{color:var(--red);}
+
+.pct-badge{
+  display:inline-block;font-size:10px;font-weight:700;
+  padding:2px 8px;border-radius:10px;margin-left:6px;
+}
+.pct-badge.pos{background:rgba(0,200,150,0.2);color:var(--green);}
+.pct-badge.neg{background:rgba(255,59,92,0.2);color:var(--red);}
+
+/* ── DOLAR INFO ── */
+.dolar-info {
+  background:rgba(255,184,0,0.08);border:1px solid rgba(255,184,0,0.2);
+  border-radius:10px;padding:10px 14px;margin-bottom:14px;
+  font-size:12px;color:var(--yellow);display:flex;align-items:center;gap:8px;
+}
+
+/* Separador divisor */
+.divider{
+  height:1px;background:var(--border);margin:16px 0;
+}
+
+/* ── LIMPIAR ── */
+.clear-btn-wrap{display:flex;justify-content:flex-end;margin-top:14px;}
+
+/* scrollbar */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(74,144,217,0.3);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="header">
+  <div class="logo-wrap">
+    <div class="logo-icon">📹</div>
+    <div>
+      <div class="logo-title">SEGURITY VISION</div>
+      <div class="logo-sub">Sistema de Presupuesto CCTV</div>
+    </div>
+  </div>
+
+  <!-- DOLAR BOX -->
+  <div class="dolar-box">
+    <div>
+      <div class="dolar-label">Valor del Dólar (CLP)</div>
+      <div class="dolar-input-wrap">
+        <span class="dolar-sign">$</span>
+        <input class="dolar-input" id="dolar-val" type="number" min="1"
+               placeholder="970" oninput="onDolarChange(this.value)">
+      </div>
+    </div>
+    <div>
+      <div class="dolar-badge" id="dolar-status">Sin ingresar</div>
+    </div>
+  </div>
+</header>
+
+<!-- ── MAIN LAYOUT ── -->
+<div class="wrap">
+
+  <!-- COLUMNA IZQUIERDA -->
+  <div style="display:flex;flex-direction:column;gap:18px;">
+
+    <!-- AGREGAR PRODUCTO -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">➕ Agregar Producto</div>
+      </div>
+      <div class="panel-body">
+        <div class="add-grid">
+          <div>
+            <label class="form-label">Producto</label>
+            <select class="form-select" id="prod-select">
+              <option value="">— Seleccionar producto —</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Cant.</label>
+            <input class="form-input" id="prod-qty" type="number" min="1" value="1"
+                   style="text-align:center;">
+          </div>
+          <div style="padding-top:22px;">
+            <button class="btn btn-primary" onclick="agregarProducto()">+ Agregar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLA PRODUCTOS -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">📦 Productos en Presupuesto</div>
+        <button class="btn btn-ghost" onclick="limpiarTodo()">🗑 Limpiar todo</button>
+      </div>
+      <div class="panel-body" style="padding:12px 0 12px;">
+        <div id="tabla-wrap">
+          <div class="empty" id="empty-msg">
+            <div class="icon">🛒</div>
+            <p>No hay productos aún.<br>Selecciona uno arriba para comenzar.</p>
+          </div>
+          <table class="items-table" id="items-table" style="display:none;">
+            <thead>
+              <tr>
+                <th style="padding-left:20px">PRODUCTO</th>
+                <th>P. UNIT</th>
+                <th>CANT.</th>
+                <th>SUBTOTAL</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="items-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLUMNA DERECHA -->
+  <div style="display:flex;flex-direction:column;gap:18px;">
+
+    <!-- RESUMEN -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">💰 Resumen</div>
+      </div>
+      <div class="panel-body">
+        <div class="summary-row">
+          <span class="s-label">Productos distintos</span>
+          <span class="s-val" id="s-items">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="s-label">Unidades totales</span>
+          <span class="s-val" id="s-units">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="s-label">Con precio en USD</span>
+          <span class="s-val" style="color:var(--yellow)" id="s-usd-items">0 productos</span>
+        </div>
+        <div class="total-box">
+          <span class="total-label">COSTO TOTAL</span>
+          <span class="total-val" id="s-total">$0</span>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;"
+                onclick="document.getElementById('precio-venta').focus()">
+          Calcular ganancia ↓
+        </button>
+      </div>
+    </div>
+
+    <!-- CALCULAR GANANCIA -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">📈 Calcular Ganancia</div>
+      </div>
+      <div class="panel-body">
+        <label class="form-label">Precio de venta al cliente (CLP)</label>
+        <div class="ganancia-input-wrap">
+          <input class="form-input" id="precio-venta" type="number" min="0"
+                 placeholder="Ej: 259990" oninput="calcGanancia()">
+          <button class="btn btn-primary" onclick="calcGanancia()">✓</button>
+        </div>
+        <div id="ganancia-result" style="display:none;"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ──────────────────────────────────────────────────
+// CATÁLOGO DE PRODUCTOS
+// usd: true  → precio base en USD, se multiplica por dólar
+// usd: false → precio fijo en CLP
+// ──────────────────────────────────────────────────
+const CATALOGO = [
+  // ── Precio en USD reales → se multiplica por el dólar ingresado
+  // precioBase = valor en dólares (ej: 11 = USD 11)
+  { nombre:'Cámara Full HD INTCOMEX',          precioBase: 11,    usd: true, iva: true  },
+  { nombre:'Cámara con Audio INTCOMEX',        precioBase: 15.60, usd: true, iva: true  },
+  { nombre:'Balum INTCOMEX',                   precioBase:  2,    usd: true, iva: true  },
+  { nombre:'DVR 4 Canales INTCOMEX',           precioBase: 25.70, usd: true, iva: true  },
+  { nombre:'DVR 8 Canales INTCOMEX',           precioBase: 31.30, usd: true, iva: true  },
+
+  // ── Precios fijos CLP (no cambian con el dólar)
+  { nombre:'DVR 4 Canales',                    precioBase: 28000, usd: false },
+  { nombre:'DVR 8 Canales',                    precioBase: 35000, usd: false },
+  { nombre:'Disco Duro 500GB',                 precioBase:  5000, usd: false },
+  { nombre:'Disco Duro 1TB',                   precioBase: 10000, usd: false },
+  { nombre:'Monitor VGA',                      precioBase: 15000, usd: false },
+  { nombre:'Cámara con Audio Pudahuel',        precioBase: 17000, usd: false },
+  { nombre:'Cámara Full HD Pudahuel',          precioBase: 14000, usd: false },
+  { nombre:'Cámara 1MP Dahua SSTT',            precioBase:  8900, usd: false },
+  { nombre:'Balum HIKVISION Pudahuel',         precioBase:  2500, usd: false },
+  { nombre:'Balum Económico Pudahuel',         precioBase:  2000, usd: false },
+  { nombre:'Transformador 12V 2mha Pudahuel',  precioBase:  6000, usd: false },
+  { nombre:'Transformador 12V 1.5mha SSTT',    precioBase:  3200, usd: false },
+  { nombre:'Caja Estanca Sodimac',             precioBase:  1050, usd: false },
+  { nombre:'Caja Estanca San Francisco',       precioBase:  1500, usd: false },
+];
+
+let carrito  = [];      // [{idx, nombre, precioBase, usd, precioActual, qty}]
+let dolarCLP = 0;
+
+// ── INIT ──────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  buildSelect();
+});
+
+function buildSelect() {
+  const sel = document.getElementById('prod-select');
+  sel.innerHTML = '<option value="">— Seleccionar producto —</option>';
+  CATALOGO.forEach((p, i) => {
+    const precio = getPrecio(p);
+    const usdTag = p.usd ? ' 💵' : '';
+    const precioStr = p.usd && dolarCLP === 0
+      ? '⚠ Ingresa valor USD'
+      : fmtCLP(precio);
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `${p.nombre}${usdTag}  —  ${precioStr}`;
+    sel.appendChild(opt);
+  });
+}
+
+// ── DOLAR ─────────────────────────────────────────
+function onDolarChange(val) {
+  dolarCLP = parseFloat(val) || 0;
+  const badge = document.getElementById('dolar-status');
+  if (dolarCLP > 0) {
+    badge.textContent = `USD × ${fmtCLP(dolarCLP)}`;
+    badge.style.background = 'rgba(255,184,0,0.2)';
+    badge.style.color = 'var(--yellow)';
+  } else {
+    badge.textContent = 'Sin ingresar';
+    badge.style.background = '';
+    badge.style.color = '';
+  }
+  // Recalcular precios de todo el carrito
+  carrito.forEach(item => {
+    item.precioActual = getPrecio(CATALOGO[item.idx]);
+  });
+  buildSelect();
+  renderTabla();
+  renderResumen();
+  calcGanancia();
+}
+
+function getPrecio(prod) {
+  let precio = prod.precioBase;
+  if (prod.usd) {
+    if (dolarCLP === 0) return 0;
+    precio = prod.precioBase * dolarCLP;
+  }
+  if (prod.iva) precio = precio * 1.19;
+  return Math.round(precio);
+}
+
+// ── CARRITO ───────────────────────────────────────
+function agregarProducto() {
+  const sel = document.getElementById('prod-select');
+  const idx = parseInt(sel.value);
+  const qty = parseInt(document.getElementById('prod-qty').value) || 1;
+  if (isNaN(idx) || sel.value === '') { showToast('⚠ Selecciona un producto'); return; }
+
+  const prod = CATALOGO[idx];
+  // Si ya existe, sumar cantidad
+  const existe = carrito.find(c => c.idx === idx);
+  if (existe) {
+    existe.qty += qty;
+    existe.precioActual = getPrecio(prod);
+  } else {
+    carrito.push({ idx, nombre: prod.nombre, usd: prod.usd, iva: prod.iva || false,
+                   precioActual: getPrecio(prod), qty });
+  }
+  sel.value = '';
+  document.getElementById('prod-qty').value = 1;
+  renderTabla();
+  renderResumen();
+  calcGanancia();
+}
+
+function eliminarItem(idx) {
+  carrito = carrito.filter(c => c.idx !== idx);
+  renderTabla();
+  renderResumen();
+  calcGanancia();
+}
+
+function updateQty(idx, val) {
+  const qty = parseInt(val);
+  if (qty < 1) return;
+  const item = carrito.find(c => c.idx === idx);
+  if (item) item.qty = qty;
+  renderResumen();
+  calcGanancia();
+  // actualizar subtotal en celda
+  const cell = document.getElementById('sub-' + idx);
+  if (cell) cell.textContent = fmtCLP(item.precioActual * qty);
+}
+
+function limpiarTodo() {
+  if (carrito.length === 0) return;
+  if (!confirm('¿Limpiar todos los productos del presupuesto?')) return;
+  carrito = [];
+  renderTabla();
+  renderResumen();
+  calcGanancia();
+}
+
+// ── RENDER TABLA ──────────────────────────────────
+function renderTabla() {
+  const tbody  = document.getElementById('items-tbody');
+  const table  = document.getElementById('items-table');
+  const empty  = document.getElementById('empty-msg');
+
+  if (carrito.length === 0) {
+    table.style.display = 'none';
+    empty.style.display = 'block';
+    tbody.innerHTML = '';
+    return;
+  }
+  table.style.display = 'table';
+  empty.style.display = 'none';
+
+  tbody.innerHTML = carrito.map(item => `
+    <tr>
+      <td style="padding-left:20px">
+        <span class="prod-name">${item.nombre}</span>
+        ${item.usd ? '<span class="usd-tag">USD</span>' : ''}
+        ${item.iva ? '<span class="usd-tag" style="background:rgba(0,200,150,0.12);color:var(--green);border-color:rgba(0,200,150,0.3)">+IVA</span>' : ''}
+      </td>
+      <td><span class="prod-price">${fmtCLP(item.precioActual)}</span></td>
+      <td>
+        <input class="qty-input" type="number" min="1" value="${item.qty}"
+               onchange="updateQty(${item.idx}, this.value)"
+               oninput="updateQty(${item.idx}, this.value)">
+      </td>
+      <td><span class="subtotal" id="sub-${item.idx}">${fmtCLP(item.precioActual * item.qty)}</span></td>
+      <td>
+        <button class="btn btn-danger" onclick="eliminarItem(${item.idx})">✕</button>
+      </td>
+    </tr>`).join('');
+}
+
+// ── RESUMEN ───────────────────────────────────────
+function renderResumen() {
+  const total    = carrito.reduce((s, c) => s + c.precioActual * c.qty, 0);
+  const units    = carrito.reduce((s, c) => s + c.qty, 0);
+  const usdItems = carrito.filter(c => c.usd).length;
+
+  document.getElementById('s-items').textContent = carrito.length;
+  document.getElementById('s-units').textContent = units;
+  document.getElementById('s-usd-items').textContent = usdItems + ' producto' + (usdItems !== 1 ? 's' : '');
+  document.getElementById('s-total').textContent = fmtCLP(total);
+}
+
+// ── GANANCIA ──────────────────────────────────────
+function calcGanancia() {
+  const pv    = parseFloat(document.getElementById('precio-venta').value) || 0;
+  const costo = carrito.reduce((s, c) => s + c.precioActual * c.qty, 0);
+  const res   = document.getElementById('ganancia-result');
+
+  if (pv === 0 || costo === 0) { res.style.display = 'none'; return; }
+
+  const gan  = pv - costo;
+  const pct  = costo > 0 ? (gan / costo * 100) : 0;
+  const pos  = gan >= 0;
+
+  res.style.display = 'block';
+  res.className = 'ganancia-result' + (pos ? '' : ' perdida');
+  res.innerHTML = `
+    <div class="g-row">
+      <span class="g-label">Costo total (presupuesto)</span>
+      <span class="g-val">${fmtCLP(costo)}</span>
+    </div>
+    <div class="g-row">
+      <span class="g-label">Precio de venta</span>
+      <span class="g-val">${fmtCLP(pv)}</span>
+    </div>
+    <div class="g-row">
+      <span class="g-label">${pos ? '✅ Ganancia' : '⚠️ Pérdida'}</span>
+      <span class="g-val ${pos ? 'pos' : 'neg'}">
+        ${fmtCLP(Math.abs(gan))}
+        <span class="pct-badge ${pos ? 'pos' : 'neg'}">${pos ? '+' : '-'}${Math.abs(pct).toFixed(1)}%</span>
+      </span>
+    </div>`;
+}
+
+// ── HELPERS ───────────────────────────────────────
+function fmtCLP(n) {
+  return '$' + Math.round(n).toLocaleString('es-CL');
+}
+
+function showToast(msg) {
+  // simple alert fallback
+  alert(msg);
+}
+</script>
+</body>
+</html>
